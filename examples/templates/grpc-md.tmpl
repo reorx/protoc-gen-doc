@@ -34,7 +34,7 @@
 
 {{.Description}}
 
-{{$req := index $file.MessagesMap .RequestLongType -}}
+{{$req := index $file.MessagesMap .RequestFullType -}}
 ### Request:  {{$req.LongName}}
 
 {{$req.Description -}}
@@ -46,7 +46,7 @@
 	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{- end -}}{{/* end HasFields */}}
-{{$resp := index $file.MessagesMap .ResponseLongType -}}
+{{$resp := index $file.MessagesMap .ResponseFullType -}}
 ### Response:  {{$resp.LongName}}
 
 {{$resp.Description -}}
