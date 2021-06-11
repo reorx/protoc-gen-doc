@@ -26,19 +26,20 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 
 	for _, f := range descs {
 		file := &File{
-			Name:          f.GetName(),
-			Description:   description(f.GetSyntaxComments().String()),
-			Package:       f.GetPackage(),
-			HasEnums:      len(f.Enums) > 0,
-			HasExtensions: len(f.Extensions) > 0,
-			HasMessages:   len(f.Messages) > 0,
-			HasServices:   len(f.Services) > 0,
-			Enums:         make(orderedEnums, 0, len(f.Enums)),
-			Extensions:    make(orderedExtensions, 0, len(f.Extensions)),
-			Messages:      make(orderedMessages, 0, len(f.Messages)),
-			MessagesMap:   make(messagesMap),
-			Services:      make(orderedServices, 0, len(f.Services)),
-			Options:       mergeOptions(extractOptions(f.GetOptions()), extensions.Transform(f.OptionExtensions)),
+			Name:               f.GetName(),
+			Description:        description(f.GetSyntaxComments().String()),
+			Package:            f.GetPackage(),
+			HasEnums:           len(f.Enums) > 0,
+			HasExtensions:      len(f.Extensions) > 0,
+			HasMessages:        len(f.Messages) > 0,
+			HasServices:        len(f.Services) > 0,
+			Enums:              make(orderedEnums, 0, len(f.Enums)),
+			Extensions:         make(orderedExtensions, 0, len(f.Extensions)),
+			Messages:           make(orderedMessages, 0, len(f.Messages)),
+			MessagesMap:        make(messagesMap),
+			NonServiceMessages: make(orderedMessages, 0, len(f.Messages)),
+			Services:           make(orderedServices, 0, len(f.Services)),
+			Options:            mergeOptions(extractOptions(f.GetOptions()), extensions.Transform(f.OptionExtensions)),
 		}
 
 		for _, e := range f.Enums {
@@ -66,15 +67,22 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 			addFromMessage(m)
 		}
 
+		serviceMessageNames := make(map[string]bool)
 		for _, s := range f.Services {
 			// fmt.Println("parse service")
-			file.Services = append(file.Services, parseService(s))
+			file.Services = append(file.Services, parseService(s, serviceMessageNames))
 		}
 
 		sort.Sort(file.Enums)
 		sort.Sort(file.Extensions)
 		sort.Sort(file.Messages)
 		sort.Sort(file.Services)
+
+		for _, tm := range file.Messages {
+			if _, ok := serviceMessageNames[tm.FullName]; !ok {
+				file.NonServiceMessages = append(file.NonServiceMessages, tm)
+			}
+		}
 
 		files = append(files, file)
 	}
@@ -141,11 +149,12 @@ type File struct {
 	HasMessages   bool `json:"hasMessages"`
 	HasServices   bool `json:"hasServices"`
 
-	Enums       orderedEnums      `json:"enums"`
-	Extensions  orderedExtensions `json:"extensions"`
-	Messages    orderedMessages   `json:"messages"`
-	MessagesMap messagesMap       `json:"-"`
-	Services    orderedServices   `json:"services"`
+	Enums              orderedEnums      `json:"enums"`
+	Extensions         orderedExtensions `json:"extensions"`
+	Messages           orderedMessages   `json:"messages"`
+	NonServiceMessages orderedMessages   `json:"-"`
+	MessagesMap        messagesMap       `json:"-"`
+	Services           orderedServices   `json:"services"`
 
 	Options map[string]interface{} `json:"options,omitempty"`
 }
@@ -509,7 +518,7 @@ func parseMessageField(pf *protokit.FieldDescriptor, oneofDecls []*descriptor.On
 	return m
 }
 
-func parseService(ps *protokit.ServiceDescriptor) *Service {
+func parseService(ps *protokit.ServiceDescriptor, serviceMessageNames map[string]bool) *Service {
 	service := &Service{
 		Name:        ps.GetName(),
 		LongName:    ps.GetLongName(),
@@ -519,7 +528,10 @@ func parseService(ps *protokit.ServiceDescriptor) *Service {
 	}
 
 	for _, sm := range ps.Methods {
-		service.Methods = append(service.Methods, parseServiceMethod(sm))
+		tsm := parseServiceMethod(sm)
+		service.Methods = append(service.Methods, tsm)
+		serviceMessageNames[tsm.RequestFullType] = true
+		serviceMessageNames[tsm.ResponseFullType] = true
 	}
 
 	return service

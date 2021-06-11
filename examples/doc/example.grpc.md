@@ -84,55 +84,9 @@ Represents the status of a vehicle booking.
 
 # Messages
 
-
-<!-- TODO remove req/resp messages -->
-
-## Booking {#booking}
-Represents the booking of a vehicle.
-
-Vehicles are some cool shit. But drive carefully!
+Messages that are not used as service method request or response.
 
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| vehicle_id | [ int32](#int32) | ID of booked vehicle. |
-| customer_id | [ int32](#int32) | Customer that booked the vehicle. |
-| status | [ BookingStatus](#bookingstatus) | Status of the booking. |
-| confirmation_sent | [ bool](#bool) | Has booking confirmation been sent? |
-| payment_received | [ bool](#bool) | Has payment been received? |
-| color_preference | [ string](#string) | Color preference of the customer. |
-
-
-
-
-<!-- TODO remove req/resp messages -->
-
-## BookingStatus {#bookingstatus}
-Represents the status of a vehicle booking.
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int32](#int32) | Unique booking status ID. |
-| description | [ string](#string) | Booking status description. E.g. "Active". |
-
-
-
-
-<!-- TODO remove req/resp messages -->
-
-## BookingStatusID {#bookingstatusid}
-Represents the booking status ID.
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int32](#int32) | Unique booking status ID. |
-
-
-
-
-<!-- TODO remove req/resp messages -->
 
 ## EmptyBookingMessage {#emptybookingmessage}
 An empty message for testing
@@ -147,8 +101,9 @@ An empty message for testing
 
 # Messages
 
+Messages that are not used as service method request or response.
 
-<!-- TODO remove req/resp messages -->
+
 
 ## Address {#address}
 Represents a mail address.
@@ -165,8 +120,6 @@ Represents a mail address.
 
 
 
-
-<!-- TODO remove req/resp messages -->
 
 ## Customer {#customer}
 Represents a customer.
@@ -192,8 +145,9 @@ Represents a customer.
 
 # Messages
 
+Messages that are not used as service method request or response.
 
-<!-- TODO remove req/resp messages -->
+
 
 ## Manufacturer {#manufacturer}
 Represents a manufacturer of cars.
@@ -209,8 +163,6 @@ Represents a manufacturer of cars.
 
 
 
-<!-- TODO remove req/resp messages -->
-
 ## Model {#model}
 Represents a vehicle model.
 
@@ -225,8 +177,6 @@ Represents a vehicle model.
 
 
 
-
-<!-- TODO remove req/resp messages -->
 
 ## Vehicle {#vehicle}
 Represents a vehicle that can be hired.
@@ -244,8 +194,6 @@ Represents a vehicle that can be hired.
 
 
 
-
-<!-- TODO remove req/resp messages -->
 
 ## Vehicle.Category {#vehiclecategory}
 Represents a vehicle category. E.g. "Sedan" or "Truck".
