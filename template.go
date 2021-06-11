@@ -36,6 +36,7 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 			Enums:         make(orderedEnums, 0, len(f.Enums)),
 			Extensions:    make(orderedExtensions, 0, len(f.Extensions)),
 			Messages:      make(orderedMessages, 0, len(f.Messages)),
+			MessagesMap:   make(messagesMap),
 			Services:      make(orderedServices, 0, len(f.Services)),
 			Options:       mergeOptions(extractOptions(f.GetOptions()), extensions.Transform(f.OptionExtensions)),
 		}
@@ -51,7 +52,9 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 		// Recursively add nested types from messages
 		var addFromMessage func(*protokit.Descriptor)
 		addFromMessage = func(m *protokit.Descriptor) {
-			file.Messages = append(file.Messages, parseMessage(m))
+			tm := parseMessage(m)
+			file.Messages = append(file.Messages, tm)
+			file.MessagesMap[tm.LongName] = tm
 			for _, e := range m.Enums {
 				file.Enums = append(file.Enums, parseEnum(e))
 			}
@@ -64,6 +67,7 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 		}
 
 		for _, s := range f.Services {
+			// fmt.Println("parse service")
 			file.Services = append(file.Services, parseService(s))
 		}
 
@@ -137,10 +141,11 @@ type File struct {
 	HasMessages   bool `json:"hasMessages"`
 	HasServices   bool `json:"hasServices"`
 
-	Enums      orderedEnums      `json:"enums"`
-	Extensions orderedExtensions `json:"extensions"`
-	Messages   orderedMessages   `json:"messages"`
-	Services   orderedServices   `json:"services"`
+	Enums       orderedEnums      `json:"enums"`
+	Extensions  orderedExtensions `json:"extensions"`
+	Messages    orderedMessages   `json:"messages"`
+	MessagesMap messagesMap       `json:"-"`
+	Services    orderedServices   `json:"services"`
 
 	Options map[string]interface{} `json:"options,omitempty"`
 }
@@ -599,3 +604,5 @@ type orderedServices []*Service
 func (os orderedServices) Len() int           { return len(os) }
 func (os orderedServices) Swap(i, j int)      { os[i], os[j] = os[j], os[i] }
 func (os orderedServices) Less(i, j int) bool { return os[i].LongName < os[j].LongName }
+
+type messagesMap map[string]*Message

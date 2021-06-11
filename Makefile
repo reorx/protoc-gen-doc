@@ -67,6 +67,7 @@ examples: build tmp/googleapis examples/proto/*.proto examples/templates/*.tmpl
 	@$(EXAMPLE_CMD) --doc_opt=html,example.html:Ignore* examples/proto/*.proto
 	@$(EXAMPLE_CMD) --doc_opt=json,example.json:Ignore* examples/proto/*.proto
 	@$(EXAMPLE_CMD) --doc_opt=markdown,example.md:Ignore* examples/proto/*.proto
+	@$(EXAMPLE_CMD) --doc_opt=examples/templates/grpc-md.tmpl,example.grpc.md:Ignore* examples/proto/*.proto
 	@$(EXAMPLE_CMD) --doc_opt=examples/templates/asciidoc.tmpl,example.txt:Ignore* examples/proto/*.proto
 
 release:
