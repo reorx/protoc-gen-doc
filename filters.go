@@ -37,6 +37,27 @@ func NoBrFilter(content string) string {
 	return strings.Join(paragraphs, "\n\n")
 }
 
+// Anchor formats content as an anchor string, replace . with -
 func Anchor(content string) string {
 	return strings.Replace(content, ".", "-", -1)
+}
+
+var injectTagRe = regexp.MustCompile(`@inject_tag: \x60.+\x60`)
+
+// RefineComment formats comment, put <br/> before @inject_tag
+func RefineComment(content string) string {
+	// handle @inject_tag, assume only one @inject_tag
+	injectTagPrefix := strings.HasPrefix(content, "@inject_tag")
+	content = injectTagRe.ReplaceAllStringFunc(content, func(v string) string {
+		v = fmt.Sprintf("<code>%s</code>", v)
+		if injectTagPrefix {
+			return v + "<br>"
+		}
+		return "<br>" + v
+	})
+
+	// trim
+	content = strings.Trim(content, "\n ")
+	content = strings.TrimSuffix(content, "<br>")
+	return content
 }

@@ -43,7 +43,7 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 {{range $req.Fields -}}
-	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
+	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{refineComment .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{- end -}}{{/* end HasFields */}}
 {{$resp := index $file.MessagesMap .ResponseFullType -}}
@@ -55,7 +55,7 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 {{range $resp.Fields -}}
-	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
+	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{refineComment .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{- end -}}{{/* end HasFields */}}
 {{end}}{{/* end methods */}}
@@ -74,7 +74,7 @@ Messages that are not used as service method request or response.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 {{range .Fields -}}
-	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
+	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{refineComment .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{end}}{{/* end HasFields */}}
 {{end}}{{/* end methods */}}

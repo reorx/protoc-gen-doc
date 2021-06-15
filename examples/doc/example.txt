@@ -23,6 +23,7 @@ Vehicles are some cool shit. But drive carefully!
 |status | <<com.example.BookingStatus,BookingStatus>> | |Status of the booking.
 
 |confirmation_sent | <<bool,bool>> | |Has booking confirmation been sent?
+@inject_tag: `validate:"required"`
 
 |payment_received | <<bool,bool>> | |Has payment been received?
 

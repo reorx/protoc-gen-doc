@@ -36,7 +36,8 @@ message Booking {
   int32 customer_id    = 2; /// Customer that booked the vehicle.
   BookingStatus status = 3; /// Status of the booking.
 
-  /** Has booking confirmation been sent? */
+  // Has booking confirmation been sent?
+  // @inject_tag: `validate:"required"`
   bool confirmation_sent = 4;
 
   /** Has payment been received? */

@@ -44,7 +44,8 @@ Vehicles are some cool shit. But drive carefully!
 | vehicle_id | [ int32](#int32) | ID of booked vehicle. |
 | customer_id | [ int32](#int32) | Customer that booked the vehicle. |
 | status | [ BookingStatus](#bookingstatus) | Status of the booking. |
-| confirmation_sent | [ bool](#bool) | Has booking confirmation been sent? |
+| confirmation_sent | [ bool](#bool) | Has booking confirmation been sent?
+<br><code>@inject_tag: `validate:"required"`</code> |
 | payment_received | [ bool](#bool) | Has payment been received? |
 | color_preference | [ string](#string) | Color preference of the customer. |
 
