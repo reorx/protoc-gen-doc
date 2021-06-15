@@ -67,7 +67,7 @@ Messages that are not used as service method request or response.
 
 {{range .NonServiceMessages}}
 
-## {{.LongName}} {#{{.LongName | lower | replace "." ""}}}
+## {{.LongName}} {#{{anchor .LongName}}}
 {{.Description}}
 
 {{if .HasFields}}

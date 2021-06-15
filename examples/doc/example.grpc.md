@@ -88,7 +88,7 @@ Messages that are not used as service method request or response.
 
 
 
-## EmptyBookingMessage {#emptybookingmessage}
+## EmptyBookingMessage {#EmptyBookingMessage}
 An empty message for testing
 
 
@@ -105,7 +105,7 @@ Messages that are not used as service method request or response.
 
 
 
-## Address {#address}
+## Address {#Address}
 Represents a mail address.
 
 
@@ -121,7 +121,7 @@ Represents a mail address.
 
 
 
-## Customer {#customer}
+## Customer {#Customer}
 Represents a customer.
 
 
@@ -149,7 +149,7 @@ Messages that are not used as service method request or response.
 
 
 
-## Manufacturer {#manufacturer}
+## Manufacturer {#Manufacturer}
 Represents a manufacturer of cars.
 
 
@@ -163,7 +163,7 @@ Represents a manufacturer of cars.
 
 
 
-## Model {#model}
+## Model {#Model}
 Represents a vehicle model.
 
 
@@ -178,7 +178,7 @@ Represents a vehicle model.
 
 
 
-## Vehicle {#vehicle}
+## Vehicle {#Vehicle}
 Represents a vehicle that can be hired.
 
 
@@ -195,7 +195,7 @@ Represents a vehicle that can be hired.
 
 
 
-## Vehicle.Category {#vehiclecategory}
+## Vehicle.Category {#Vehicle-Category}
 Represents a vehicle category. E.g. "Sedan" or "Truck".
 
 
