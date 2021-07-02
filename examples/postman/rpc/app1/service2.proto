@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+package postman.rpc.app1;
+
+service Service2Service {
+  rpc CreateBar(CreateBarRequest) returns (CreateBarResponse) {
+    option (google.api.http) = {
+      post: "/service1/CreateBar"
+      body: "*"
+    };
+  }
+  rpc Noop(NoopRequest) returns (NoopResponse) {}
+}
+
+message CreateBarRequest {
+  string name = 1;
+  uint32 id = 2;
+}
+
+message CreateBarResponse {
+}
+
+message NoopRequest {}
+
+message NoopResponse {}

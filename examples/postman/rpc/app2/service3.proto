@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+package postman.rpc.app2;
+
+service Service3Service {
+  rpc CreateBaz(CreateBazRequest) returns (CreateBazResponse) {
+    option (google.api.http) = {
+      post: "/service1/CreateBaz"
+      body: "*"
+    };
+  }
+  rpc Noop(NoopRequest) returns (NoopResponse) {}
+}
+
+message CreateBazRequest {
+  string name = 1;
+  uint32 id = 2;
+}
+
+message CreateBazResponse {
+}
+
+message NoopRequest {}
+
+message NoopResponse {}

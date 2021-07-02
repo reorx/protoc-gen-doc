@@ -1,0 +1,10 @@
+---
+src_dir: raw_collections
+dest_dir: collections
+new_collections:
+  - name: app1
+    folder_globs:
+      - rpc/app1/*.json
+  - name: app2
+    folder_globs:
+      - rpc/app2/*.json

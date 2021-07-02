@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "util.proto";
+
+package postman.rpc.app1;
+
+service Service1Service {
+  rpc CreateFoo(CreateFooRequest) returns (CreateFooResponse) {
+    option (google.api.http) = {
+      post: "/service1/CreateFoo"
+      body: "*"
+    };
+  }
+  rpc Noop(NoopRequest) returns (NoopResponse) {}
+}
+
+message CreateFooRequest {
+  string name = 1;
+  uint32 id = 2;
+  postman.TimeRange time_range = 3;
+  postman.Page page = 5;
+}
+
+message CreateFooResponse {
+}
+
+message NoopRequest {}
+
+message NoopResponse {}

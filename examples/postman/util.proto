@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package postman;
+
+import "google/protobuf/timestamp.proto";
+
+message Page {
+    int64 index = 1;
+    int64 size  = 2;
+}
+
+message TimeRange {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}

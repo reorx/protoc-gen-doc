@@ -20,6 +20,7 @@ const (
 	RenderTypeHTML
 	RenderTypeJSON
 	RenderTypeMarkdown
+	RenderTypePostmanCollection
 )
 
 // NewRenderType creates a RenderType from the supplied string. If the type is not known, (0, error) is returned. It is
@@ -54,6 +55,8 @@ func (rt RenderType) renderer() (Processor, error) {
 		return new(jsonRenderer), nil
 	case RenderTypeMarkdown:
 		return &htmlRenderer{string(tmpl)}, nil
+	case RenderTypePostmanCollection:
+		return new(postmanRenderer), nil
 	}
 
 	return nil, errors.New("Unable to create a processor")
@@ -75,10 +78,10 @@ func (rt RenderType) template() ([]byte, error) {
 }
 
 var funcMap = map[string]interface{}{
-	"p":    PFilter,
-	"para": ParaFilter,
-	"nobr": NoBrFilter,
-	"anchor": Anchor,
+	"p":             PFilter,
+	"para":          ParaFilter,
+	"nobr":          NoBrFilter,
+	"anchor":        Anchor,
 	"refineComment": RefineComment,
 }
 

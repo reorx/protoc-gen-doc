@@ -1,0 +1,47 @@
+{
+  "info": {
+    "_postman_id": "66b05bb1-75da-4639-b7d3-b2ecf7a1a8f7",
+    "name": "app1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "service1",
+      "item": [
+        {
+          "name": "CreateFoo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "session-id=a013b2d5-d28d-4293-b78d-3c42fb18d21f.hYl%2BsC12wVpOtpjjx4sqz2NwI%2FC%2F2p9onkhmsNL0w",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"time_range\": {\n        \"start\": \"2021-05-17T00:00:00Z\",\n        \"end\": \"2021-05-19T00:00:00Z\"\n    },\n    \"name\": \"foo\",\n    \"page\": {\n        \"size\": 10,\n        \"index\": 1\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{app1_entrypoint}}/service1/CreateFoo",
+              "host": [
+                "{{app1_entrypoint}}"
+              ],
+              "path": [
+                "service1",
+                "CreateFoo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
