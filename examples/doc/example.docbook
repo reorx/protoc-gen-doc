@@ -638,41 +638,6 @@
     </section>
     
     
-    <section id="com.example.Manufacturer.Category">
-      <title>Manufacturer.Category</title>
-      <para>Manufacturer category. A manufacturer may be either inhouse or external.</para>
-      <table frame="all">
-        <title><classname>Manufacturer.Category</classname> Values</title>
-        <tgroup cols="3">
-          <colspec colwidth="*"/>
-          <colspec colwidth="*"/>
-          <colspec colwidth="3*"/>
-          <thead>
-            <row>
-              <entry>Name</entry>
-              <entry>Number</entry>
-              <entry>Description</entry>
-            </row>
-          </thead>
-          <tbody>
-            
-            <row>
-              <entry>CATEGORY_INHOUSE</entry>
-              <entry>0</entry>
-              <entry><para>The manufacturer is inhouse.</para></entry>
-            </row>
-            
-            <row>
-              <entry>CATEGORY_EXTERNAL</entry>
-              <entry>1</entry>
-              <entry><para>The manufacturer is external.</para></entry>
-            </row>
-            
-          </tbody>
-        </tgroup>
-      </table>
-    </section>
-    
 
     
     <section>
