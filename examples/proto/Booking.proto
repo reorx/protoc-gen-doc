@@ -24,6 +24,10 @@ message BookingStatusID {
 message BookingStatus {
   int32 id           = 1; /// Unique booking status ID.
   string description = 2 [(validator.field) = {string_not_empty: true, length_lt: 255}]; /// Booking status description. E.g. "Active".
+  enum Enum {
+    NOT_SET = 0;
+    OK = 1;
+  }
 }
 
 /**

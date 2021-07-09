@@ -1,3 +1,13 @@
+{{define "enum-section"}}{{.LongName}} {#{{.LongName | lower | replace "." ""}}}
+{{.Description}}
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+{{range .Values -}}
+	| {{.Name}} | {{.Number}} | {{if .Description}}{{nobr .Description}}{{else}}none{{end}} |
+{{end}}
+{{end -}}
+
 # API Reference
 
 # Table of Contents
@@ -46,6 +56,12 @@
 	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{refineComment .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{- end -}}{{/* end HasFields */}}
+
+{{if $req.HasEnums}}
+{{range $req.Enums}}
+#### {{template "enum-section" . -}}
+{{end}}
+{{end}}{{/* end HasEnums */}}
 {{$resp := index $file.MessagesMap .ResponseFullType -}}
 ### Response:  {{$resp.LongName}}
 
@@ -58,6 +74,12 @@
 	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{refineComment .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{- end -}}{{/* end HasFields */}}
+
+{{if $resp.HasEnums}}
+{{range $resp.Enums}}
+#### {{template "enum-section" . -}}
+{{end}}
+{{end}}{{/* end HasEnums */}}
 {{end}}{{/* end methods */}}
 {{end}}{{/* end services */}}
 
@@ -77,19 +99,18 @@ Messages that are not used as service method request or response.
 	| {{if .IsOneof}}[**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) {{.OneofDecl}}.{{end}}{{.Name}} | [{{if .IsMap}}map {{else}}{{.Label}} {{end}}{{.LongType}}](#{{.LongType | lower | replace "." ""}}) | {{if .Description}}{{refineComment .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}}{{else}}none{{end}} |
 {{end}}{{/* end Fields */}}
 {{end}}{{/* end HasFields */}}
+
+{{if .HasEnums}}
+{{range .Enums}}
+#### {{template "enum-section" . -}}
+{{end}}
+{{end}}{{/* end HasEnums */}}
 {{end}}{{/* end methods */}}
 
 # Enums
 {{range .Enums}}
 
-## {{.LongName}} {#{{.LongName | lower | replace "." ""}}}
-{{.Description}}
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-{{range .Values -}}
-	| {{.Name}} | {{.Number}} | {{if .Description}}{{nobr .Description}}{{else}}none{{end}} |
-{{end}}
+## {{template "enum-section" . -}}
 {{end}}{{/* end Enums */}}
 {{end}}{{/* end Files */}}
 

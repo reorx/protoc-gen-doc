@@ -49,6 +49,8 @@ Vehicles are some cool shit. But drive carefully!
 | payment_received | [ bool](#bool) | Has payment been received? |
 | color_preference | [ string](#string) | Color preference of the customer. |
 
+
+
 ### Response:  BookingStatus
 
 Represents the status of a vehicle booking.
@@ -56,6 +58,19 @@ Represents the status of a vehicle booking.
 | ----- | ---- | ----------- |
 | id | [ int32](#int32) | Unique booking status ID. |
 | description | [ string](#string) | Booking status description. E.g. "Active". |
+
+
+
+
+#### BookingStatus.Enum {#bookingstatusenum}
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NOT_SET | 0 | none |
+| OK | 1 | none |
+
+
 
 
 ## BookingUpdates
@@ -72,6 +87,8 @@ Represents the booking status ID.
 | ----- | ---- | ----------- |
 | id | [ int32](#int32) | Unique booking status ID. |
 
+
+
 ### Response:  BookingStatus
 
 Represents the status of a vehicle booking.
@@ -79,6 +96,19 @@ Represents the status of a vehicle booking.
 | ----- | ---- | ----------- |
 | id | [ int32](#int32) | Unique booking status ID. |
 | description | [ string](#string) | Booking status description. E.g. "Active". |
+
+
+
+
+#### BookingStatus.Enum {#bookingstatusenum}
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NOT_SET | 0 | none |
+| OK | 1 | none |
+
+
 
 
 
@@ -91,6 +121,8 @@ Messages that are not used as service method request or response.
 
 ## EmptyBookingMessage {#EmptyBookingMessage}
 An empty message for testing
+
+
 
 
 
@@ -122,6 +154,8 @@ Represents a mail address.
 
 
 
+
+
 ## Customer {#Customer}
 Represents a customer.
 
@@ -135,6 +169,8 @@ Represents a customer.
 | email_address | [optional string](#string) | Customer e-mail address. |
 | phone_number | [repeated string](#string) | Customer phone numbers, primary first. |
 | mail_addresses | [repeated Address](#address) | Customer mail addresses, primary first. |
+
+
 
 
 
@@ -164,6 +200,19 @@ Represents a manufacturer of cars.
 
 
 
+
+#### Manufacturer.Category {#manufacturercategory}
+Manufacturer category. A manufacturer may be either inhouse or external.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CATEGORY_INHOUSE | 0 | The manufacturer is inhouse. |
+| CATEGORY_EXTERNAL | 1 | The manufacturer is external. |
+
+
+
+
+
 ## Model {#Model}
 Represents a vehicle model.
 
@@ -175,6 +224,8 @@ Represents a vehicle model.
 | model_name | [required string](#string) | The car model name, e.g. "Z3". |
 | daily_hire_rate_dollars | [required sint32](#sint32) | Dollars per day. |
 | daily_hire_rate_cents | [required sint32](#sint32) | Cents per day. |
+
+
 
 
 
@@ -196,6 +247,8 @@ Represents a vehicle that can be hired.
 
 
 
+
+
 ## Vehicle.Category {#Vehicle-Category}
 Represents a vehicle category. E.g. "Sedan" or "Truck".
 
@@ -208,17 +261,9 @@ Represents a vehicle category. E.g. "Sedan" or "Truck".
 
 
 
+
+
 # Enums
-
-
-## Manufacturer.Category {#manufacturercategory}
-Manufacturer category. A manufacturer may be either inhouse or external.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CATEGORY_INHOUSE | 0 | The manufacturer is inhouse. |
-| CATEGORY_EXTERNAL | 1 | The manufacturer is external. |
-
 
 
 

@@ -211,20 +211,6 @@ Represents a vehicle category. E.g. "Sedan" or "Truck".
 
 
 
-[[Manufacturer.Category]]
-=== Manufacturer.Category
-Manufacturer category. A manufacturer may be either inhouse or external.
-
-|=====================================
-|*Name* |*Number* |*Description*
-
-|CATEGORY_INHOUSE |0 |The manufacturer is inhouse.
-
-|CATEGORY_EXTERNAL |1 |The manufacturer is external.
-
-|=====================================
-
-
 
 == Scalar Value Types
 

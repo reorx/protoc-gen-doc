@@ -9,6 +9,26 @@
       "hasMessages": true,
       "hasServices": true,
       "enums": [],
+      "messageEnums": [
+        {
+          "name": "Enum",
+          "longName": "BookingStatus.Enum",
+          "fullName": "com.example.BookingStatus.Enum",
+          "description": "",
+          "values": [
+            {
+              "name": "NOT_SET",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "OK",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
@@ -19,6 +39,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
           "fields": [
             {
@@ -96,7 +117,8 @@
                 "deprecated": true
               }
             }
-          ]
+          ],
+          "enums": []
         },
         {
           "name": "BookingStatus",
@@ -106,6 +128,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": true,
           "extensions": [],
           "fields": [
             {
@@ -144,6 +167,26 @@
                 ]
               }
             }
+          ],
+          "enums": [
+            {
+              "name": "Enum",
+              "longName": "BookingStatus.Enum",
+              "fullName": "com.example.BookingStatus.Enum",
+              "description": "",
+              "values": [
+                {
+                  "name": "NOT_SET",
+                  "number": "0",
+                  "description": ""
+                },
+                {
+                  "name": "OK",
+                  "number": "1",
+                  "description": ""
+                }
+              ]
+            }
           ]
         },
         {
@@ -154,6 +197,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
           "fields": [
             {
@@ -168,7 +212,8 @@
               "oneofdecl": "",
               "defaultValue": ""
             }
-          ]
+          ],
+          "enums": []
         },
         {
           "name": "EmptyBookingMessage",
@@ -178,8 +223,10 @@
           "hasExtensions": false,
           "hasFields": false,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
-          "fields": []
+          "fields": [],
+          "enums": []
         }
       ],
       "services": [
@@ -237,6 +284,7 @@
       "hasMessages": true,
       "hasServices": false,
       "enums": [],
+      "messageEnums": null,
       "extensions": [],
       "messages": [
         {
@@ -247,6 +295,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
           "fields": [
             {
@@ -321,7 +370,8 @@
               "oneofdecl": "",
               "defaultValue": ""
             }
-          ]
+          ],
+          "enums": []
         },
         {
           "name": "Customer",
@@ -331,6 +381,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
           "fields": [
             {
@@ -417,7 +468,8 @@
               "oneofdecl": "",
               "defaultValue": ""
             }
-          ]
+          ],
+          "enums": []
         }
       ],
       "services": []
@@ -430,7 +482,8 @@
       "hasExtensions": true,
       "hasMessages": true,
       "hasServices": false,
-      "enums": [
+      "enums": [],
+      "messageEnums": [
         {
           "name": "Category",
           "longName": "Manufacturer.Category",
@@ -476,6 +529,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": true,
           "extensions": [],
           "fields": [
             {
@@ -526,6 +580,26 @@
               "oneofdecl": "",
               "defaultValue": "CATEGORY_EXTERNAL"
             }
+          ],
+          "enums": [
+            {
+              "name": "Category",
+              "longName": "Manufacturer.Category",
+              "fullName": "com.example.Manufacturer.Category",
+              "description": "Manufacturer category. A manufacturer may be either inhouse or external.",
+              "values": [
+                {
+                  "name": "CATEGORY_INHOUSE",
+                  "number": "0",
+                  "description": "The manufacturer is inhouse."
+                },
+                {
+                  "name": "CATEGORY_EXTERNAL",
+                  "number": "1",
+                  "description": "The manufacturer is external."
+                }
+              ]
+            }
           ]
         },
         {
@@ -536,6 +610,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
           "fields": [
             {
@@ -598,7 +673,8 @@
               "oneofdecl": "",
               "defaultValue": ""
             }
-          ]
+          ],
+          "enums": []
         },
         {
           "name": "Vehicle",
@@ -608,6 +684,7 @@
           "hasExtensions": true,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [
             {
               "name": "series",
@@ -713,7 +790,8 @@
               "oneofdecl": "",
               "defaultValue": ""
             }
-          ]
+          ],
+          "enums": []
         },
         {
           "name": "Category",
@@ -723,6 +801,7 @@
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
+          "HasEnums": false,
           "extensions": [],
           "fields": [
             {
@@ -749,7 +828,8 @@
               "oneofdecl": "",
               "defaultValue": ""
             }
-          ]
+          ],
+          "enums": []
         }
       ],
       "services": []

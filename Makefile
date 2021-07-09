@@ -43,7 +43,8 @@ test: fixtures/fileset.pb resources.go
 bench:
 	@go test -bench=.
 
-build: resources.go
+build: *.go
+	@echo Building protoc-gen-doc binary...
 	@go build ./cmd/...
 
 dist:

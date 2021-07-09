@@ -21,8 +21,6 @@
     - [Vehicle](#com.example.Vehicle)
     - [Vehicle.Category](#com.example.Vehicle.Category)
   
-    - [Manufacturer.Category](#com.example.Manufacturer.Category)
-  
     - [File-level Extensions](#Vehicle.proto-extensions)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -265,18 +263,6 @@ Represents a vehicle category. E.g. &#34;Sedan&#34; or &#34;Truck&#34;.
 
 
  
-
-
-<a name="com.example.Manufacturer.Category"></a>
-
-### Manufacturer.Category
-Manufacturer category. A manufacturer may be either inhouse or external.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CATEGORY_INHOUSE | 0 | The manufacturer is inhouse. |
-| CATEGORY_EXTERNAL | 1 | The manufacturer is external. |
-
 
  
 

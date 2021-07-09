@@ -57,7 +57,7 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 			file.Messages = append(file.Messages, tm)
 			file.MessagesMap[tm.FullName] = tm
 			for _, e := range m.Enums {
-				file.Enums = append(file.Enums, parseEnum(e))
+				file.MessageEnums = append(file.MessageEnums, parseEnum(e))
 			}
 			for _, n := range m.Messages {
 				addFromMessage(n)
@@ -150,6 +150,7 @@ type File struct {
 	HasServices   bool `json:"hasServices"`
 
 	Enums              orderedEnums      `json:"enums"`
+	MessageEnums       orderedEnums      `json:"messageEnums"`
 	Extensions         orderedExtensions `json:"extensions"`
 	Messages           orderedMessages   `json:"messages"`
 	NonServiceMessages orderedMessages   `json:"-"`
@@ -191,9 +192,11 @@ type Message struct {
 	HasExtensions bool `json:"hasExtensions"`
 	HasFields     bool `json:"hasFields"`
 	HasOneofs     bool `json:"hasOneofs"`
+	HasEnums      bool
 
 	Extensions []*MessageExtension `json:"extensions"`
 	Fields     []*MessageField     `json:"fields"`
+	Enums      orderedEnums        `json:"enums"`
 
 	Options map[string]interface{} `json:"options,omitempty"`
 }
@@ -460,8 +463,10 @@ func parseMessage(pm *protokit.Descriptor) *Message {
 		HasExtensions: len(pm.GetExtensions()) > 0,
 		HasFields:     len(pm.GetMessageFields()) > 0,
 		HasOneofs:     len(pm.GetOneofDecl()) > 0,
+		HasEnums:      len(pm.Enums) > 0,
 		Extensions:    make([]*MessageExtension, 0, len(pm.Extensions)),
 		Fields:        make([]*MessageField, 0, len(pm.Fields)),
+		Enums:         make(orderedEnums, 0, len(pm.Enums)),
 		Options:       mergeOptions(extractOptions(pm.GetOptions()), extensions.Transform(pm.OptionExtensions)),
 	}
 
@@ -471,6 +476,10 @@ func parseMessage(pm *protokit.Descriptor) *Message {
 
 	for _, f := range pm.Fields {
 		msg.Fields = append(msg.Fields, parseMessageField(f, pm.GetOneofDecl()))
+	}
+
+	for _, e := range pm.Enums {
+		msg.Enums = append(msg.Enums, parseEnum(e))
 	}
 
 	return msg
