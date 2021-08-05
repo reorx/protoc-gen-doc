@@ -1,6 +1,10 @@
 # API Reference
 
 # Table of Contents
+
+- File Options:
+  - hugo.page: weight:1 
+
 - Services
   - [BookingService](#comexamplebookingservice)
   

@@ -8,8 +8,12 @@ syntax = "proto3";
 
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "hugo/page.proto";
 
 package com.example;
+option (hugo.page) = {
+  weight: 1
+};
 
 /**
  * Represents the booking status ID.

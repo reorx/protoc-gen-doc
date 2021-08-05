@@ -12,6 +12,13 @@
 
 # Table of Contents
 {{range .Files}}
+{{- with .Options}}
+- File Options:
+{{- range $name, $opt := .}}
+  - {{$name}}: {{$opt}}
+{{end}}
+{{end}}
+
 {{- if .HasServices -}}
 - Services
   {{range .Services}}- [{{.Name}}](#{{.FullName | lower | replace "." ""}})

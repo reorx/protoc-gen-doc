@@ -7,7 +7,7 @@ DOCS_DIR=$(EXAMPLE_DIR)/doc
 PROTOS_DIR=$(EXAMPLE_DIR)/proto
 
 EXAMPLE_CMD=protoc --plugin=protoc-gen-doc \
-	-Ithirdparty -Itmp/googleapis -Iexamples/proto \
+	-Ithirdparty -Itmp/googleapis -Iexamples/proto -Iextensions \
 	--doc_out=examples/doc
 
 DOCKER_CMD=docker run --rm \
@@ -70,6 +70,9 @@ examples: build tmp/googleapis examples/proto/*.proto examples/templates/*.tmpl
 	@$(EXAMPLE_CMD) --doc_opt=markdown,example.md:Ignore* examples/proto/*.proto
 	@$(EXAMPLE_CMD) --doc_opt=examples/templates/grpc-md.tmpl,example.grpc.md:Ignore* examples/proto/*.proto
 	@$(EXAMPLE_CMD) --doc_opt=examples/templates/asciidoc.tmpl,example.txt:Ignore* examples/proto/*.proto
+
+extensions-hugo: extensions/hugo/*.go
+	@protoc -Iextensions/hugo --go_out=extensions/hugo extensions/hugo/*.proto
 
 release:
 	@echo Releasing v${VERSION}...

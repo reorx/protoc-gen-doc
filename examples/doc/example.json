@@ -273,7 +273,12 @@
             }
           ]
         }
-      ]
+      ],
+      "options": {
+        "hugo.page": {
+          "weight": 1
+        }
+      }
     },
     {
       "name": "Customer.proto",
